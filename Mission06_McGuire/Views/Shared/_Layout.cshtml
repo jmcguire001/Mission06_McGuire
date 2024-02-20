@@ -50,15 +50,17 @@
                                 <a class="nav-link text-dark @(currentController == "Home" && currentAction == "Index" ? "active" : "")"
                                    asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link text-dark @(currentController == "Home" && currentAction == "Meetjoel" ? "active" : "")"
                                    asp-area="" asp-controller="Home" asp-action="Meetjoel">Get to Know Joel</a>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link text-dark @(currentController == "Home" && currentAction == "Form" ? "active" : "")"
                                    asp-area="" asp-controller="Home" asp-action="Form">Add to Collection</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark @(currentController == "Home" && currentAction == "Collection" ? "active" : "")"
+                                   asp-area="" asp-controller="Home" asp-action="Collection">View Collection</a>
                             </li>
                         </ul>
                     </div>

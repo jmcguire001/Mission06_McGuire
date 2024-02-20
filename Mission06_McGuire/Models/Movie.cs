@@ -4,12 +4,12 @@ namespace Mission06_McGuire.Models
 {
     public class Movie
     {
-        [Required]
-        public string Category { get; set; }
-
         [Key]
         [Required]
         public string Title { get; set; } // Movie title is the primary key because it is unique
+
+        [Required]
+        public string Category { get; set; }
 
         [Required]
         public string Year { get; set; }

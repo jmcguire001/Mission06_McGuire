@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Confirmed";
+}
+
+@model List<Movie>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Year</th>
+            <th>Director</th>
+            <th>Rating</th>
+            <th>Edited</th>
+            <th>Lent to</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+
+    @foreach (var m in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@m.Title</td>
+                <td>@m.Category</td>
+                <td>@m.Year</td>
+                <td>@m Director</td>
+                <td>@m.Rating</td>
+                <td>@m.Edited</td>
+                <td>@m.LentTo</td>
+                <td>@m.Notes</td>
+            </tr>
+        </tbody>
+    })
+</table>
