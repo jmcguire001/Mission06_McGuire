@@ -30,6 +30,8 @@ namespace Mission06_McGuire.Controllers
         [HttpGet]
         public IActionResult Form()
         {
+            ViewBag.Categories = _context.Categories.ToList();
+
             return View();
         }
 
@@ -44,6 +46,8 @@ namespace Mission06_McGuire.Controllers
 
         public IActionResult Collection()
         {
+            ViewBag.Categories = _context.Categories.ToList();
+
             var movie = _context.Movies
                 .OrderBy(x => x.Title).
                 ToList();

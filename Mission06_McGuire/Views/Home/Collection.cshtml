@@ -4,8 +4,8 @@
 
 @model List<Movie>
 
-<table>
-    <thead>
+<table class="table table-bordered">
+    <thead class="fw-bold">
         <tr>
             <th>Title</th>
             <th>Category</th>
@@ -23,14 +23,38 @@
         <tbody>
             <tr>
                 <td>@m.Title</td>
-                <td>@m.Category</td>
+
+                <!-- This is a nested foreach loop that will find the category of the movie -->
+                @{
+                    // This is a boolean that will be used to check if the category was found
+                    bool categoryFound = false;
+
+                    // This is a foreach loop that will go through the categories and find the category of the movie if there's a match
+                    foreach (Categories c in ViewBag.Categories)
+                    {
+                        if (c.CategoryId == m.CategoryId)
+                        {
+                            <td>@c.Category</td>
+                            categoryFound = true;
+                            break;
+                        }
+                    }
+
+                    // If the category was not found, then an empty cell will be added
+                    if (!categoryFound)
+                    {
+                        <td></td>
+                    }
+                }
+
                 <td>@m.Year</td>
-                <td>@m Director</td>
+                <td>@m.Director</td>
                 <td>@m.Rating</td>
                 <td>@m.Edited</td>
                 <td>@m.LentTo</td>
                 <td>@m.Notes</td>
             </tr>
         </tbody>
-    })
+    }
+
 </table>

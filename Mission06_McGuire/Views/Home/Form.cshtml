@@ -14,34 +14,27 @@
 
         <!-- Form and questions -->
         <form method="post">
+            <label asp-for="Category">Category </label>
+            <select asp-for="Category">
+                <option value="" disabled selected>Select</option>
+
+                @foreach (Categories c in ViewBag.Categories)
+                {
+                    <option value="@c.CategoryId">@c.Category</option>
+                }
+            </select>
+            <br>
             <label asp-for="Title">Title</label>
             <input asp-for="Title" required/>
             <br>
-
-            <label asp-for="Category">Category </label>
-            <select asp-for="Category" required>
-                <option value="" disabled selected>Select</option>
-                <option value="Action/Adventure">Action/Adventure</option>
-                <option value="Comedy">Comedy</option>
-                <option value="Drama">Drama</option>
-                <option value="Family">Family</option>
-                <option value="Horror/Suspense">Horror/Suspense</option>
-                <option value="Miscellaneous">Miscellaneous</option>
-                <option value="Television">Television</option>
-                <option value="VHS">VHS</option>
-            </select>
-            <br>
-
             <label asp-for="Year">Year</label>
             <input asp-for="Year" required/>
             <br>
-
             <label asp-for="Director">Director</label>
-            <input asp-for="Director" required/>
+            <input asp-for="Director"/>
             <br>
-
             <label asp-for="Rating">Rating</label>
-            <select asp-for="Rating" required>
+            <select asp-for="Rating">
                 <option value="" disabled selected>Select</option>
                 <option value="G">G</option>
                 <option value="PG">PG</option>
@@ -49,20 +42,22 @@
                 <option value="R">R</option>
             </select>
             <br>
-
-            <!-- This can be Yes/No and optional; optional will be null -->
             <label asp-for="Edited">Edited</label>
-            <select asp-for="Edited">
-                <option value="" disabled selected>Select</option>
+            <select asp-for="Edited" required>
+                <option value="0" disabled selected>Select</option>
                 <option value=1>Yes</option>
                 <option value=0>No</option>
             </select>
             <br>
-
             <label asp-for="LentTo">Lent To</label>
             <input asp-for="LentTo"/>
             <br>
-            
+            <label asp-for="CopiedToPlex">Copied to Plex</label>
+            <select asp-for="CopiedToPlex" required>
+                <option value="0" disabled selected>Select</option>
+                <option value=1>Yes</option>
+                <option value=0>No</option>
+            </select>
             <label asp-for="Notes">Notes</label>
             <input asp-for="Notes" maxlength="25"/>
             <br>
