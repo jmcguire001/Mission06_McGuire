@@ -4,6 +4,7 @@
     ViewData["Title"] = "The Collection";
 }
 
+<!-- CSS Styling to make the table look more professional -->
 <div class="table-responsive">
     <table class="table table-bordered table-striped table-hover">
         <thead class="bg-secondary text-white">
@@ -14,6 +15,7 @@
                 <th>Director</th>
                 <th>Rating</th>
                 <th>Edited</th>
+                <!-- Added some inline CSS to modify column width to eliminate truncation-->
                 <th style="width: 72px;">Lent To</th>
                 <th style="width: 127px;">Copied to Plex</th>
                 <th>Notes</th>
@@ -23,6 +25,7 @@
         </thead>
 
         <tbody>
+            <!-- Show the categories from the CategoryId -->
             @foreach (var m in Model)
             {
                 <tr>
@@ -52,11 +55,12 @@
                     <td>@m.Year</td>
                     <td>@m.Director</td>
                     <td>@m.Rating</td>
-                    <td>@(m.Edited == 1 ? "True" : "False")</td>
+                    <td>@(m.Edited == 1 ? "True" : "False")</td> <!-- Show True/False -->
                     <td>@m.LentTo</td>
-                    <td>@(m.CopiedToPlex == 1 ? "True" : "False")</td>
+                    <td>@(m.CopiedToPlex == 1 ? "True" : "False")</td> <!-- Show True/False -->
                     <td>@m.Notes</td>
 
+                    <!-- Add CRUD buttons -->
                     <td>
                         <a class="btn btn-sm btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@m.MovieId">Edit</a>
                     </td>

@@ -150,3 +150,9 @@ button:hover {
     padding: 0;
     border: none;
 }
+
+/* Set a fixed width for the table container and enable horizontal scrolling */
+.table-container {
+    max-width: 100%; /* Adjust the value according to your needs */
+    overflow-x: auto;
+}
