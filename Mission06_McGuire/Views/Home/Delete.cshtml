@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Confirm Deletion";
+}
+
+@model Movie
+
+<!-- Show message to confirm deletion -->
+<h1>Confirm Deletion</h1>
+<p>Movie Title: @Model.Title</p>
+
+<!-- Form to delete the movie and to confirm those changes -->
+<form asp-controller="Home" asp-action="Delete" method="post" class="deleteform">
+    <input type="hidden" asp-for="MovieId"/> <!-- This is so that we can have the proper ID to delete -->
+
+    <button type="submit" class="btn btn-sm btn-danger">Delete</button> <!-- This will delete the movie from the database -->
+    <a class="btn btn-sm btn-info" asp-controller="Home" asp-action="Collection">Cancel</a> <!-- This will take the user back to the Collection page -->
+</form>

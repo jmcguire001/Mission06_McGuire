@@ -1,60 +1,70 @@
-﻿@{
-    ViewData["Title"] = "Confirmed";
+﻿@model List<Movie>
+
+@{
+    ViewData["Title"] = "The Collection";
 }
 
-@model List<Movie>
-
-<table class="table table-bordered">
-    <thead class="fw-bold">
-        <tr>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Year</th>
-            <th>Director</th>
-            <th>Rating</th>
-            <th>Edited</th>
-            <th>Lent to</th>
-            <th>Notes</th>
-        </tr>
-    </thead>
-
-    @foreach (var m in Model)
-    {
-        <tbody>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="bg-secondary text-white">
             <tr>
-                <td>@m.Title</td>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Year</th>
+                <th>Director</th>
+                <th>Rating</th>
+                <th>Edited</th>
+                <th style="width: 72px;">Lent To</th>
+                <th style="width: 127px;">Copied to Plex</th>
+                <th>Notes</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
 
-                <!-- This is a nested foreach loop that will find the category of the movie -->
-                @{
-                    // This is a boolean that will be used to check if the category was found
-                    bool categoryFound = false;
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@m.Title</td>
 
-                    // This is a foreach loop that will go through the categories and find the category of the movie if there's a match
-                    foreach (Categories c in ViewBag.Categories)
-                    {
-                        if (c.CategoryId == m.CategoryId)
+                    @{
+                        bool categoryFound = false;
+
+                        foreach (Category c in ViewBag.Categories)
                         {
-                            <td>@c.Category</td>
-                            categoryFound = true;
-                            break;
+                            if (c.CategoryId == m.CategoryId)
+                            {
+                                categoryFound = true;
+
+                                <td>@c.CategoryName</td>
+
+                                break;
+                            }
+                        }
+
+                        if (!categoryFound)
+                        {
+                            <td></td>
                         }
                     }
 
-                    // If the category was not found, then an empty cell will be added
-                    if (!categoryFound)
-                    {
-                        <td></td>
-                    }
-                }
+                    <td>@m.Year</td>
+                    <td>@m.Director</td>
+                    <td>@m.Rating</td>
+                    <td>@(m.Edited == 1 ? "True" : "False")</td>
+                    <td>@m.LentTo</td>
+                    <td>@(m.CopiedToPlex == 1 ? "True" : "False")</td>
+                    <td>@m.Notes</td>
 
-                <td>@m.Year</td>
-                <td>@m.Director</td>
-                <td>@m.Rating</td>
-                <td>@m.Edited</td>
-                <td>@m.LentTo</td>
-                <td>@m.Notes</td>
-            </tr>
+                    <td>
+                        <a class="btn btn-sm btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@m.MovieId">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@m.MovieId">Delete</a>
+                    </td>
+                </tr>
+            }
         </tbody>
-    }
-
-</table>
+    </table>
+</div>

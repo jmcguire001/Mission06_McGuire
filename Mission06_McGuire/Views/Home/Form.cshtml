@@ -1,8 +1,8 @@
-﻿@model Movie
-
-@{
-    ViewData["Title"] = "Add to Collection";
+﻿@{
+    ViewData["Title"] = ViewBag.Title;
 }
+
+@model Movie
 
 <div class="text-center">
     <h1 class="display-4">Add Your Favorites to the Collection!</h1><br>
@@ -11,58 +11,81 @@
     <fieldset>
         <!-- Attach a line underneat the legend -->
         <legend style="text-align:left; border-bottom:2px solid #333;">Fill out the Form</legend>
+        <p style="font-style:italic; font-size: 12px; text-align:left;">*Indicates required field</p>
 
         <!-- Form and questions -->
-        <form method="post">
-            <label asp-for="Category">Category </label>
-            <select asp-for="Category">
+        <form method="post" class="movieform">
+            <input type="hidden" asp-for="MovieId"/> <!-- This is so that we can have the proper ID -->
+
+            <label asp-for="CategoryId">Category </label>
+            <select asp-for="CategoryId">
                 <option value="" disabled selected>Select</option>
 
-                @foreach (Categories c in ViewBag.Categories)
+                <!-- Use C# razor code to show the categories -->
+                @foreach (Category c in ViewBag.Categories)
                 {
-                    <option value="@c.CategoryId">@c.Category</option>
+                    <option value="@c.CategoryId">@c.CategoryName</option>
                 }
             </select>
             <br>
-            <label asp-for="Title">Title</label>
-            <input asp-for="Title" required/>
+
+            <label asp-for="Title">Title*</label>
+            <input asp-for="Title"/>
             <br>
-            <label asp-for="Year">Year</label>
-            <input asp-for="Year" required/>
+
+            <label asp-for="Year">Year*</label>
+            <input asp-for="Year"/>
             <br>
+
             <label asp-for="Director">Director</label>
             <input asp-for="Director"/>
             <br>
-            <label asp-for="Rating">Rating</label>
+
+            <label asp-for="Rating">Rating*</label>
             <select asp-for="Rating">
                 <option value="" disabled selected>Select</option>
+                <option value="NR">NR</option>
                 <option value="G">G</option>
                 <option value="PG">PG</option>
                 <option value="PG-13">PG-13</option>
                 <option value="R">R</option>
+                <option value="R?">R?</option>
+                <option value="TV-14">TV-14</option>
+                <option value="TV-G">TV-G</option>
+                <option value="TV-PG">TV-PG</option>
+                <option value="TV-Y7">TV-Y7</option>
+                <option value="UR">UR</option>
             </select>
             <br>
-            <label asp-for="Edited">Edited</label>
-            <select asp-for="Edited" required>
-                <option value="0" disabled selected>Select</option>
+
+            <label asp-for="Edited">Edited*</label>
+            <select asp-for="Edited">
+                <option value="" disabled selected>Select</option>
                 <option value=1>Yes</option>
                 <option value=0>No</option>
             </select>
             <br>
+
             <label asp-for="LentTo">Lent To</label>
             <input asp-for="LentTo"/>
             <br>
-            <label asp-for="CopiedToPlex">Copied to Plex</label>
-            <select asp-for="CopiedToPlex" required>
-                <option value="0" disabled selected>Select</option>
+
+            <label asp-for="CopiedToPlex">Copied to Plex*</label>
+            <select asp-for="CopiedToPlex">
+                <option value="" disabled selected>Select</option>
                 <option value=1>Yes</option>
                 <option value=0>No</option>
             </select>
+            <br>
+
             <label asp-for="Notes">Notes</label>
-            <input asp-for="Notes" maxlength="25"/>
+            <input asp-for="Notes"/>
             <br>
 
             <button type="submit" value="Submit">Add!</button>
+
+            <!-- This will show the validation errors -->
+            <div asp-validation-summary="All" style="font-style:italic; text-align: left; font-size: 12px; margin-top:20px;"></div>
         </form>
     </fieldset>
 </div>

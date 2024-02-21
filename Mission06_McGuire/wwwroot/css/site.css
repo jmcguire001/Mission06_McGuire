@@ -124,3 +124,29 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+.deleteform {
+    background-color: transparent;
+    color: #000;
+    padding: 10px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+    margin: 0; /* Remove any default margin */
+    display: inline-block; /* Display the form as an inline block to make it moveable and remove any default block behavior */
+    box-shadow: none;
+}
+
+/* Style for the buttons inside the form */
+.deleteform button,
+.deleteform a {
+    margin-right: 10px;
+}
+
+/* Remove any default styles on the form element */
+.deleteform form {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
