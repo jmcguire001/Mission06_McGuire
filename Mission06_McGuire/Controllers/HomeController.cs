@@ -83,10 +83,22 @@ namespace Mission06_McGuire.Controllers
         [HttpPost]
         public IActionResult Edit(Movie update)
         {
-            _context.Update(update);
-            _context.SaveChanges();
+            // Check validations for updating
+            if (ModelState.IsValid)
+            {
+                _context.Movies.Update(update);
+                _context.SaveChanges();
 
-            return RedirectToAction("Collection"); // Redirects to the Collection view
+
+                return RedirectToAction("Collection"); // Redirects to the Collection view
+            }
+            else
+            {
+                ViewBag.Categories = _context.Categories.ToList(); // Have to pass the view bag if it's not valid
+                ViewBag.Title = "Error"; // Because this view is reused, make the change unique to filling the form out
+
+                return View("Form", update);
+            }
         }
 
         [HttpGet]
