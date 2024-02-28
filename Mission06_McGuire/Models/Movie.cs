@@ -12,8 +12,9 @@ namespace Mission06_McGuire.Models
 
         // Foreign key that will be used to link the category to the movie
         [ForeignKey("CategoryId")]
-        public int? CategoryId { get; set; }
-        public Category? CategoryName { get; set; }
+        [Required(ErrorMessage = "You must enter a category name")]
+        public int CategoryId { get; set; }
+        public Category? Category { get; set; }
 
         [Required(ErrorMessage = "You must enter a movie title")]
         public string Title { get; set; } // Movie title is the primary key because it is unique
